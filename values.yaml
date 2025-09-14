@@ -24,13 +24,13 @@ sectors:
   data:
     KUBERNETES_VERSION: "1.33"
     WORKER_MACHINE_TYPE: "t4g.medium"
-    WORKER_MACHINE_COUNT: "2"
+    WORKER_MACHINE_COUNT: "1"
     ACM_VERSION: "2.14"
 - name: prod-01
   tasks: {}
   data:
     KUBERNETES_VERSION: "1.29"
-    WORKER_MACHINE_COUNT: "6"
+    WORKER_MACHINE_COUNT: "2"
     ACM_VERSION: "2.14"
 - name: prod-02
   tasks: {}
@@ -41,48 +41,35 @@ sectors:
 
 # defaults per region and mapping to sector
 regions:
-- name: eu-west-1
+- name: us-east-1
   sector: canary
   tasks: {}
   data:
-    REGION: "eu-west-1"
+    REGION: "us-east-1"
     TESTVAL: "regval"
 - name: us-east-2
   sector: prod-01
   tasks: {}
   data:
     REGION: "us-east-2"
-- name: us-west-2
-  sector: prod-01
-  tasks: {}
-  data:
-    REGION: "us-west-2"
-- name: us-east-1
-  sector: prod-02
-  tasks: {}
-  data:
-    REGION: "us-east-1"
-
 
 # clusters with their data
 clusters:
-- name: cluster-01
-  region: eu-west-1
-  tasks: {}
+- name: cluster-cveiga-01
+  region: us-east-1
+  tasks:
+    pre-task-git-url: "https://github.com/cristianoveiga/regionality.git"
+    provision-task-git-url: "https://github.com/cristianoveiga/regionality.git"
+    post-task-git-url: "https://github.com/cristianoveiga/regionality.git"
   data:
     ROLE_ARN: "arn:aws:iam::100000000001:role/central-control-plane"
-- name: cluster-02
+    PROVISION_REPO: "https://github.com/cristianoveiga/regionality.git"
+- name: cluster-cveiga-02
   region: us-east-2
-  tasks: {}
+  tasks:
+    pre-task-git-url: "https://github.com/cristianoveiga/regionality.git"
+    provision-task-git-url: "https://github.com/cristianoveiga/regionality.git"
+    post-task-git-url: "https://github.com/cristianoveiga/regionality.git"
   data:
     ROLE_ARN: "arn:aws:iam::100000000002:role/central-control-plane"
-- name: cluster-03
-  region: us-east-1
-  tasks: {}
-  data:
-    ROLE_ARN: "arn:aws:iam::100000000003:role/central-control-plane"
-- name: cluster-04
-  region: us-east-1
-  tasks: {}
-  data:
-    ROLE_ARN: "arn:aws:iam::100000000004:role/central-control-plane"
+    PROVISION_REPO: "https://github.com/cristianoveiga/regionality.git"

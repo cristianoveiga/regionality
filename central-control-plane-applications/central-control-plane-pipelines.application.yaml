@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/jmelis/regionality
-    targetRevision: HEAD
+    repoURL: https://github.com/cristianoveiga/regionality
+    targetRevision: prerender-configmaps
     path: central-control-plane/pipelines
   destination:
     server: https://kubernetes.default.svc

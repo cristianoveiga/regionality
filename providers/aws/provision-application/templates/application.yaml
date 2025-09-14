@@ -12,7 +12,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/jmelis/regionality.git
+    repoURL: https://github.com/cristianoveiga/regionality.git
     targetRevision: {{ .Values.targetRevision | quote }}
     path: providers/aws/provision/
     helm:
